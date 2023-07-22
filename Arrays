@@ -1,0 +1,48 @@
+class Program
+{
+    static void Main()
+    {
+        
+        string rutaArchivo = @"C:\Users\mayor\OneDrive\Imágenes\Scanner.txt";
+
+        
+        if (File.Exists(rutaArchivo))
+        {
+            
+            string contenido = File.ReadAllText(rutaArchivo);
+
+            
+            string patronPalabras = @"\b\w+\b";
+            string patronSignos = @"[^\w\s]";
+            string patronNumeros = @"\b\d+\b";
+
+            MatchCollection palabras = Regex.Matches(contenido, patronPalabras);
+            MatchCollection signos = Regex.Matches(contenido, patronSignos);
+            MatchCollection numeros = Regex.Matches(contenido, patronNumeros);
+
+            Console.WriteLine("Palabras encontradas:");
+            foreach (Match palabra in palabras)
+            {
+                Console.WriteLine(palabra.Value);
+            }
+
+            Console.WriteLine("\nSignos encontrados:");
+            foreach (Match signo in signos)
+            {
+                Console.WriteLine(signo.Value);
+            }
+
+            Console.WriteLine("\nNúmeros encontrados:");
+            foreach (Match numero in numeros)
+            {
+                Console.WriteLine(numero.Value);
+            }
+        }
+        else
+        {
+            Console.WriteLine("El archivo especificado no existe.");
+        }
+
+        Console.ReadLine();
+    }
+}
