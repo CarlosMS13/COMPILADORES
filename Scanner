@@ -1,0 +1,34 @@
+class Program
+{
+    static void Main()
+    {
+        
+        string rutaArchivo = @"C:\Users\mayor\OneDrive\Imágenes\Scanner.txt";
+
+        
+        if (File.Exists(rutaArchivo))
+        {
+         
+            string[] lineas = File.ReadAllLines(rutaArchivo);
+
+        
+            int numeroLineas = lineas.Length;
+
+            int numeroPalabras = 0;
+            foreach (string linea in lineas)
+            {
+               
+                string[] palabras = linea.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                numeroPalabras += palabras.Length;
+            }
+
+            Console.WriteLine($"El archivo contiene {numeroLineas} líneas y {numeroPalabras} palabras.");
+        }
+        else
+        {
+            Console.WriteLine("El archivo especificado no existe.");
+        }
+
+        Console.ReadLine();
+    }
+}
